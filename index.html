@@ -17,6 +17,9 @@
             width: 50px;
             border-radius: 15px;
         }
+        .navbar-items:hover{
+            color: blue;
+        }
     </style>
   </head>
   <body>
@@ -32,16 +35,118 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item px-lg-3">
-                    <a class="nav-link active" aria-current="page" href="#">News</a>
+                    <a class="nav-link active text-primary border-bottom " aria-current="page" href="#">News</a>
                   </li>
-                  <li class="nav-item px-lg-3">
-                    <a class="nav-link" href="#">Blog </a>
+                  <li onclick="blogInfo()" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="nav-item px-lg-3">
+                    <a class="nav-link navbar-items" href="#">Blog </a>
                   </li>
                 </ul>
               </div>
             </div>
         </nav>
         <hr>
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Question in JavaScrip?</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What's the Difference with var let and const?
+                                </button>
+                              </h2>
+                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <h3>var, let, and const Variable Declaration in JavaScript</h3>
+                                    <p>The differences between var, let, and const variable declaration in JavaScript include:
+                                        Variables declared with var and const are scoped to the immediate function body.
+                                        Variables declared with the var keyword are hoisted. Hoisting means that the variable can be accessed in their enclosing scope even before they are declared.
+                                        Variables declared with the let keyword are block-scoped, which means the variables will have scope to the immediate enclosing block.
+                                        
+                                        Let us now discuss, in detail, how these keywords can make a developer’s code more efficient and how to use each keyword to declare variables in JavaScript programs.</p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- second -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    The Difference Between Regular Functions and Arrow Functions?
+                                  </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <h2>Constructors</h2>
+                                    <h3>1.1 Regular function</h3>
+                                    <p>As seen in the previous section, the regular function can easily construct objects.
+                                    For example, the new Car() function creates instances of a car:</p>
+                                    <p>function Car(color) {</p>
+                                    <p>this.color = color;</p>
+                                    <p>}</p>
+                                    <p>const redCar = new Car('red');</p>
+                                    <p>redCar instanceof Car; // => true</p>
+                                    <br>
+                                    <h3>1.2 Arrow function</h3>
+                                    <p>A consequence of this resolved lexically is that an arrow function cannot be used as a constructor.</p>
+                                    <p>If you try to invoke an arrow function prefixed with new keyword, JavaScrip throws an error:
+                                    </p>
+                                    <p>const Car = (color) => {</p>
+                                        <p>this.color = color;</p>
+                                        <p>};</p>
+                                        <p>const redCar = new Car('red'); // TypeError: Car is not a constructor </p>
+                                        <p>Invoking new Car('red'), where Car is an arrow function, throws TypeError: Car is not a constructor.</p>
+                                </div>
+                                </div>
+                              </div>
+                              <!-- third  -->
+
+                              <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    What's the difference between map filter and foreach in javascript?
+                                  </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <h2>Array Methods Explained : Filter vs Map vs Reduce vs Foreach</h2>
+                                    <h3>1. Foreach</h3>
+                                    <p>The easy one right ? we all know why this method is used for and even you don’t know about this method the name pretty much explains everything.</p>
+                                    <p>Foreach takes a callback function and run that callback function on each element of array one by one.</p>
+                                    <p>For every element on the array we are calling a callback which gets element & its index provided by foreach.</p>
+                                    <br>
+                                    <h4>2. Filter</h4>
+                                    <p>Whenever you have to filter an array Javascript inbuilt method to filter your array is the right choice to use. Filter let you provide a callback for every element and returns a filtered array.</p>
+                                    <p>The main difference between forEach and filter is that forEach just loop over the array and executes the callback but filter executes the callback and check its return value. If the value is true element remains in the resulting array but if the return value is false the element will be removed for the resulting array.</p>
+                                    <br>
+                                    <h4>3. Map</h4>
+                                    <p>One of my favourite and most used array method of all time. As a ReactJS developer I use map a lot inside my application UI.
+
+                                        Map like filter & foreach takes a callback and run it against every element on the array but whats makes it unique is it generate a new array based on your existing array.</p>
+                                        <br>
+                                        <h4>4. Reduce</h4>
+                                        <p>As the name already suggest reduce method of the array object is used to reduce the array to one single value.
+
+                                            For example if you have to add all the elements of an array you can do something like this.</p>
+                                            peduce takes a callback ( like every function we talked about ). Inside this callback we get two arguments sum & elem. The sum is the last returned value of the reduce function. For example initially the sum value will be 0 then when the callback runs on the first element it will add the elem to the sum and return that value. On second iteration the sum value will be first elem + 0, on third iteration it will be 0 + first elem + second elem.
+
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
           <!-- navbar part end  -->
     </header>
     <main>
@@ -73,7 +178,7 @@
             <div class="container">
                   <!-- Modal -->
                   <div class="modal fade" id="newsDitailsModal" tabindex="-1" aria-labelledby="newsDitailsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-xl">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -132,7 +132,7 @@ const displayNewsModal = newsModal => {
           <p class="card-text">Rating: ${newsModal.rating.number ? newsModal.rating.number : ' No data avilable'}</p>
         </div>
     </div>`;
-}
+};
 
 loadNewsDitails('05');
 
