@@ -32,7 +32,7 @@ const displayNewsDitails = (categoryDitails) => {
         // console.log(category)
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-            <div onclick="loadNewsModal('${category._id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="card mb-5">
+            <div onclick="loadNewsModal('${category._id}')" data-bs-toggle="modal" data-bs-target="#newsDitailsModal" class="card mb-5">
             <div class="row g-0">
                 <div class="col-md-4">
                 <img src="${category.thumbnail_url}" class="img-fluid rounded-start" alt="...">
@@ -79,19 +79,21 @@ const loadNewsModal = async(id) => {
 };
 
 const displayNewsModal = newsModal => {
-    // console.log(newsModal._id)
-    const newsDitailsModal = document.getElementById('xLabel');
-    newsDitailsModal.innerText = newsModal._id;
-    // const newsModal =document.getElementById('news-modal');
-    // newsModal.innerHTML =`
-    // <img class="d-flex m-auto" src='${phone.image}'>
-    // <div class="text-center">
-    //     <P class = "mt-5">ChipSet: ${phone.mainFeatures.chipSet}</p>
-    //     <P>DisplaySize: ${phone.mainFeatures.displaySize}</p>
-    //     <P>Memory: ${phone.mainFeatures ? phone.mainFeatures.memory : 'not storage'}</p>
-    //     <P>ReleaseDate: ${phone.releaseDate ? phone.releaseDate : 'Upcomming...'}</p>
-    // </div>
-    // `;
+    console.log(newsModal)
+    const newsModalDitails = document.getElementById('news-modal');
+    newsModalDitails.innerHTML = `
+    <div class="card">
+    <img src="${newsModal.image_url}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h4 class="card-title">Name: ${newsModal.author ? newsModal.author.name : 'No data avilable' }</h4>
+      <h6>Title: ${newsModal.title}</h6>
+      <p class="card-text">Ditails: ${newsModal.details}</p>
+      </div>
+      <div class="modal-footer">
+      <p class="card-text">Total view :${newsModal ? newsModal.total_view : ' No data avilable'}</p>
+    </div>
+    `
+
 
 }
 
