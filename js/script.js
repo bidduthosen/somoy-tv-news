@@ -16,7 +16,7 @@ const displaySomoyTvNews = (newsfied) => {
         const somoydiv = document.createElement('div');
         somoydiv.innerHTML = `
         <ul onclick= "loadNewsDitails('${news.category_id}')">
-            <li>${news.category_name}</li>
+            <li class= "li-bg-hover rounded px-2">${news.category_name}</li>
         </ul>
         `;
         somoyTvNews.appendChild(somoydiv);
@@ -24,6 +24,8 @@ const displaySomoyTvNews = (newsfied) => {
     
 };
 const loadNewsDitails = async (categoryId) =>{
+    // taggleSpinner start
+    toggleSpinners(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
     try{
         const response = await fetch(url)
@@ -33,9 +35,11 @@ const loadNewsDitails = async (categoryId) =>{
     catch(error){
         console.log(error);
     }
-        
-
 };
+
+
+// loadNewsDitails('01');
+
 const displayNewsDitails = (categoryDitails) => {
     const newsDitails = document.getElementById('news-ditails');
     newsDitails.textContent = ``;
@@ -74,12 +78,22 @@ const displayNewsDitails = (categoryDitails) => {
                     </div>
                 </div>
             </div>
-        </div>
-        
-        `;
-        newsDitails.appendChild(categoryDiv)
-
+        </div> `;
+        newsDitails.appendChild(categoryDiv);
     });
+    // toggleSpinners stop
+    toggleSpinners(false);
+};
+
+// toggle spinner ---
+const toggleSpinners = isLoader => {
+    const toggleLoder = document.getElementById('taggle-loader');
+    if(isLoader){
+        toggleLoder.classList.remove('d-none')
+    }
+    else{
+        toggleLoder.classList.add('d-none');
+    }
 };
 
 const loadNewsModal = async(id) => {
@@ -96,7 +110,7 @@ const loadNewsModal = async(id) => {
 };
 
 const displayNewsModal = newsModal => {
-    console.log(newsModal)
+    // console.log(newsModal)
     const newsModalDitails = document.getElementById('news-modal');
     newsModalDitails.innerHTML = `
     <div class="card">
