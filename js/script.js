@@ -1,8 +1,13 @@
 const loadSomoyTvNews = async() => {
     const url = `https://openapi.programming-hero.com/api/news/categories`;
-    const response = await fetch(url)
-    const data = await response.json()
-    displaySomoyTvNews(data.data.news_category)
+    try{
+        const response = await fetch(url)
+        const data = await response.json()
+        displaySomoyTvNews(data.data.news_category)
+    }
+    catch(error){
+        console.log(error)
+    }
 };
 
 const displaySomoyTvNews = (newsfied) => {
@@ -20,9 +25,15 @@ const displaySomoyTvNews = (newsfied) => {
 };
 const loadNewsDitails = async (categoryId) =>{
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
-    const response = await fetch(url)
-    const data = await response.json()
-    displayNewsDitails(data.data)
+    try{
+        const response = await fetch(url)
+        const data = await response.json()
+        displayNewsDitails(data.data)
+    }
+    catch(error){
+        console.log(error);
+    }
+        
 
 };
 const displayNewsDitails = (categoryDitails) => {
@@ -49,12 +60,12 @@ const displayNewsDitails = (categoryDitails) => {
                       </div>
                       <div class="col-sm-12 col-md-4 text-md-start">
                         <h6>${category.author.name ? category.author.name : 'No data found'}</h6> 
-                        <h6>${category.author ? category.author.published_date : 'No data found'}</h6>
+                        <h6>${category.author.published_date ? category.author.published_date : 'No data found'}</h6>
                       </div>
                       <ul class="nav col-sm-12 col-md-3 justify-content-md-center d-md-flex">
                       
                         <li class="ms-3"><i class="fa-solid fa-eye"></i></li>
-                        <li class="ms-3">${category.rating ? category.rating.number : 'No data found'}M</li>
+                        <li class="ms-3">${category.total_view ? category.total_view  : 'No data found' }</li>
                       </ul>
                       <ul class="nav col-sm col-md-3 justify-content-lg-end d-md-flex">
                       <button type="button" class="btn btn-info"><i class="fa-solid fa-arrow-right"></i></button>
@@ -73,9 +84,15 @@ const displayNewsDitails = (categoryDitails) => {
 
 const loadNewsModal = async(id) => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`;
-    const response = await fetch(url)
-    const data = await response.json()
-    displayNewsModal(data.data[0])
+    try{
+        const response = await fetch(url)
+        const data = await response.json()
+        displayNewsModal(data.data[0])
+
+    }
+    catch(error){
+        console.log(error);
+    }
 };
 
 const displayNewsModal = newsModal => {
@@ -85,12 +102,12 @@ const displayNewsModal = newsModal => {
     <div class="card">
     <img src="${newsModal.image_url}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h4 class="card-title">Name: ${newsModal.author ? newsModal.author.name : 'No data avilable' }</h4>
+      <h4 class="card-title">Name: ${newsModal.author.name ? newsModal.author.name : 'No data avilable' }</h4>
       <h6>Title: ${newsModal.title}</h6>
       <p class="card-text">Ditails: ${newsModal.details}</p>
       </div>
       <div class="modal-footer">
-      <p class="card-text">Total view :${newsModal ? newsModal.total_view : ' No data avilable'}</p>
+      <p class="card-text">Rating: ${newsModal.rating.number ? newsModal.rating.number : ' No data avilable'}</p>
     </div>
     `
 
